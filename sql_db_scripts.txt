@@ -1,0 +1,642 @@
+USE [HMDB]
+GO
+/****** Object:  Table [dbo].[TBLaccount]    Script Date: 13-11-2018 10:53:52 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TBLaccount](
+	[loginID] [varchar](50) NOT NULL,
+	[name] [varchar](50) NULL,
+	[designationid] [int] NULL,
+	[password] [varchar](50) NULL,
+ CONSTRAINT [PK_TBLaccount] PRIMARY KEY CLUSTERED 
+(
+	[loginID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbladmitdetails]    Script Date: 13-11-2018 10:53:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbladmitdetails](
+	[admitdetailsid] [int] IDENTITY(1,1) NOT NULL,
+	[patientid] [int] NOT NULL,
+	[datetime] [varchar](50) NULL,
+	[status] [varchar](50) NULL,
+	[bedid] [int] NULL,
+	[fromdate] [varchar](50) NULL,
+	[todate] [varchar](50) NULL,
+	[entrydate] [varchar](50) NULL,
+	[entryby] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[admitdetailsid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblappointment]    Script Date: 13-11-2018 10:53:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblappointment](
+	[appointmentid] [int] IDENTITY(1,1) NOT NULL,
+	[patientid] [int] NOT NULL,
+	[starttime] [datetime] NULL,
+	[endtime] [datetime] NULL,
+	[doctor] [varchar](50) NULL,
+	[location] [varchar](50) NULL,
+	[entrydate] [varchar](50) NULL,
+	[entryby] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[appointmentid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblattribute]    Script Date: 13-11-2018 10:53:56 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblattribute](
+	[attributrid] [int] IDENTITY(1,1) NOT NULL,
+	[attribute] [varchar](100) NULL,
+	[attributeqty] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[attributrid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblbed]    Script Date: 13-11-2018 10:53:56 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblbed](
+	[bedid] [int] IDENTITY(1,1) NOT NULL,
+	[roomid] [int] NOT NULL,
+	[bedno] [int] NULL,
+	[bedtype] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[bedid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblbedtype]    Script Date: 13-11-2018 10:53:56 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblbedtype](
+	[bedtypeid] [int] IDENTITY(1,1) NOT NULL,
+	[bedtype] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[bedtypeid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblbill]    Script Date: 13-11-2018 10:53:56 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblbill](
+	[billid] [int] IDENTITY(1,1) NOT NULL,
+	[purchaseid] [int] NOT NULL,
+	[billdate] [datetime] NOT NULL,
+	[taxpercent] [decimal](18, 0) NULL,
+	[total] [decimal](18, 0) NULL,
+	[discount] [decimal](18, 0) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[billid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblBilldetails]    Script Date: 13-11-2018 10:53:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblBilldetails](
+	[Billdetailsid] [int] IDENTITY(1,1) NOT NULL,
+	[billid] [int] NULL,
+	[item] [int] NULL,
+	[qty] [int] NULL,
+	[price] [decimal](18, 0) NULL,
+	[cgst] [decimal](18, 0) NULL,
+	[sgst] [decimal](18, 0) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Billdetailsid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbldepartment]    Script Date: 13-11-2018 10:53:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbldepartment](
+	[departmentID] [int] IDENTITY(1,1) NOT NULL,
+	[departmentname] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[departmentID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TBLdesignation]    Script Date: 13-11-2018 10:53:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TBLdesignation](
+	[DesignationID] [int] IDENTITY(1,1) NOT NULL,
+	[Designation] [varchar](50) NULL,
+ CONSTRAINT [PK_TBLdesignation] PRIMARY KEY CLUSTERED 
+(
+	[DesignationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TBLdisease]    Script Date: 13-11-2018 10:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TBLdisease](
+	[diseaseid] [int] NOT NULL,
+	[disease] [varchar](max) NULL,
+	[description] [varchar](max) NULL,
+ CONSTRAINT [PK_TBLdisease] PRIMARY KEY CLUSTERED 
+(
+	[diseaseid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TBLdistributordetails]    Script Date: 13-11-2018 10:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TBLdistributordetails](
+	[distributorid] [int] IDENTITY(1,1) NOT NULL,
+	[companyname] [varchar](250) NULL,
+	[address] [varchar](250) NULL,
+	[contactperson] [varchar](150) NULL,
+	[pocmobile] [varchar](50) NULL,
+	[companymobile] [varchar](50) NULL,
+	[email] [varchar](50) NULL,
+ CONSTRAINT [PK_TBLdistributordetails] PRIMARY KEY CLUSTERED 
+(
+	[distributorid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblenquiry]    Script Date: 13-11-2018 10:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblenquiry](
+	[enquiryid] [int] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](max) NULL,
+	[address] [varchar](max) NULL,
+	[mobile] [varchar](50) NULL,
+	[email] [varchar](150) NULL,
+	[occupation] [varchar](250) NULL,
+	[reason] [varchar](max) NULL,
+	[leadby] [varchar](150) NULL,
+	[leadcontact] [varchar](50) NULL,
+	[leadaddress] [varchar](250) NULL,
+	[userid] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[enquiryid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblitem]    Script Date: 13-11-2018 10:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblitem](
+	[itemid] [int] IDENTITY(1,1) NOT NULL,
+	[itemtypeid] [int] NULL,
+	[itemdescription] [varchar](max) NULL,
+	[item] [varchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[itemid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TBLItems]    Script Date: 13-11-2018 10:53:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TBLItems](
+	[itemid] [int] IDENTITY(1,1) NOT NULL,
+	[item] [varchar](max) NULL,
+	[itemdescription] [varchar](max) NULL,
+ CONSTRAINT [PK_TBLtablets] PRIMARY KEY CLUSTERED 
+(
+	[itemid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblItemtype]    Script Date: 13-11-2018 10:53:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblItemtype](
+	[itemtypeid] [int] IDENTITY(1,1) NOT NULL,
+	[itemtype] [varchar](50) NULL,
+	[departmentid] [varchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[itemtypeid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TBLlogindetails]    Script Date: 13-11-2018 10:53:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TBLlogindetails](
+	[logindetailsid] [int] IDENTITY(1,1) NOT NULL,
+	[loginid] [varchar](50) NULL,
+	[loginintime] [varchar](50) NULL,
+	[loginouttime] [varchar](50) NULL,
+ CONSTRAINT [PK_TBLlogindetails] PRIMARY KEY CLUSTERED 
+(
+	[logindetailsid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblorder]    Script Date: 13-11-2018 10:53:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblorder](
+	[Orderid] [int] IDENTITY(1,1) NOT NULL,
+	[distributorid] [int] NOT NULL,
+	[orderdate] [datetime] NULL,
+	[receiverid] [varchar](50) NULL,
+	[receivedrate] [varchar](50) NULL,
+	[photcopy] [varchar](max) NULL,
+ CONSTRAINT [PK__tblorder__C39F40174C594704] PRIMARY KEY CLUSTERED 
+(
+	[Orderid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblorderdetails]    Script Date: 13-11-2018 10:54:00 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblorderdetails](
+	[orderdetailsid] [int] IDENTITY(1,1) NOT NULL,
+	[orderid] [int] NOT NULL,
+	[tablet] [int] NOT NULL,
+	[qty] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[orderdetailsid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TBLpatient]    Script Date: 13-11-2018 10:54:00 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TBLpatient](
+	[patientid] [int] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](max) NULL,
+	[mobile] [varchar](50) NULL,
+	[email] [varchar](50) NULL,
+	[address] [varchar](max) NULL,
+	[occupation] [varchar](50) NULL,
+	[cardno] [varchar](50) NULL,
+ CONSTRAINT [PK_TBLpatient] PRIMARY KEY CLUSTERED 
+(
+	[patientid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblpurchase]    Script Date: 13-11-2018 10:54:00 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblpurchase](
+	[purchaseid] [int] IDENTITY(1,1) NOT NULL,
+	[orderid] [int] NOT NULL,
+	[purchasedate] [datetime] NULL,
+	[userid] [varchar](50) NULL,
+	[photcopy] [varchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[purchaseid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblpurchasedetails]    Script Date: 13-11-2018 10:54:01 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblpurchasedetails](
+	[purchasedetailsid] [int] IDENTITY(1,1) NOT NULL,
+	[purchaseid] [int] NOT NULL,
+	[tablet] [int] NOT NULL,
+	[qty] [int] NOT NULL,
+	[rate] [decimal](18, 0) NOT NULL,
+	[type] [varchar](50) NULL,
+	[expdate] [datetime] NULL,
+	[manufacturedate] [datetime] NULL,
+	[batchno] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[purchasedetailsid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblroom]    Script Date: 13-11-2018 10:54:01 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblroom](
+	[roomid] [int] IDENTITY(1,1) NOT NULL,
+	[roomno] [int] NULL,
+	[roomlocation] [varchar](50) NULL,
+	[roomtypeid] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[roomid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblroomtype]    Script Date: 13-11-2018 10:54:01 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblroomtype](
+	[roomtypeid] [int] IDENTITY(1,1) NOT NULL,
+	[roomtype] [varchar](50) NULL,
+	[roomprice] [varchar](50) NULL,
+	[roomdiscription] [varchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[roomtypeid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbltheoreapylog]    Script Date: 13-11-2018 10:54:01 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbltheoreapylog](
+	[theoreapylogid] [int] IDENTITY(1,1) NOT NULL,
+	[therapydetailsid] [int] NOT NULL,
+	[entrydate] [varchar](50) NULL,
+	[entryby] [varchar](50) NOT NULL,
+	[comment] [varchar](max) NULL,
+	[feedback] [varchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[theoreapylogid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbltherapydetails]    Script Date: 13-11-2018 10:54:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbltherapydetails](
+	[therapydetailsid] [int] IDENTITY(1,1) NOT NULL,
+	[patientid] [int] NOT NULL,
+	[caretaker] [varchar](50) NOT NULL,
+	[supervior] [varchar](50) NOT NULL,
+	[treatmenttypeid] [int] NOT NULL,
+	[fromdate] [varchar](50) NULL,
+	[todate] [varchar](50) NULL,
+	[entrydate] [varchar](50) NULL,
+	[entryby] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[therapydetailsid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbltreatementtype]    Script Date: 13-11-2018 10:54:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbltreatementtype](
+	[treatmenttypeid] [int] IDENTITY(1,1) NOT NULL,
+	[treatmenttype] [varchar](50) NULL,
+	[treatmentdescription] [varchar](max) NULL,
+	[treatmentdays] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[treatmenttypeid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbltreatment]    Script Date: 13-11-2018 10:54:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbltreatment](
+	[treatmentid] [int] IDENTITY(1,1) NOT NULL,
+	[patientid] [int] NULL,
+	[treatmentdate] [datetime] NULL,
+ CONSTRAINT [PK__tbltreat__D7B7D660BEDC71DE] PRIMARY KEY CLUSTERED 
+(
+	[treatmentid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbltreatmentdetails]    Script Date: 13-11-2018 10:54:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbltreatmentdetails](
+	[treatmentdetailsid] [int] IDENTITY(1,1) NOT NULL,
+	[treamentid] [int] NOT NULL,
+	[deseaseid] [int] NOT NULL,
+	[treatmentdetails] [varchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[treatmentdetailsid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbltreatmenttabletdetails]    Script Date: 13-11-2018 10:54:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbltreatmenttabletdetails](
+	[treatmenttabletid] [int] IDENTITY(1,1) NOT NULL,
+	[treatmentdetailsid] [int] NOT NULL,
+	[tabletid] [int] NOT NULL,
+	[qty] [int] NULL,
+	[dosagedetails] [varchar](150) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[treatmenttabletid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[TBLaccount]  WITH CHECK ADD  CONSTRAINT [FK_TBLaccount_TBLdesignation] FOREIGN KEY([designationid])
+REFERENCES [dbo].[TBLdesignation] ([DesignationID])
+GO
+ALTER TABLE [dbo].[TBLaccount] CHECK CONSTRAINT [FK_TBLaccount_TBLdesignation]
+GO
+ALTER TABLE [dbo].[tbladmitdetails]  WITH CHECK ADD FOREIGN KEY([bedid])
+REFERENCES [dbo].[tblbed] ([bedid])
+GO
+ALTER TABLE [dbo].[tbladmitdetails]  WITH CHECK ADD  CONSTRAINT [FK_tbladmitdetails_TBLpatient] FOREIGN KEY([patientid])
+REFERENCES [dbo].[TBLpatient] ([patientid])
+GO
+ALTER TABLE [dbo].[tbladmitdetails] CHECK CONSTRAINT [FK_tbladmitdetails_TBLpatient]
+GO
+ALTER TABLE [dbo].[tblappointment]  WITH CHECK ADD  CONSTRAINT [FK_tblappointment_TBLaccount] FOREIGN KEY([doctor])
+REFERENCES [dbo].[TBLaccount] ([loginID])
+GO
+ALTER TABLE [dbo].[tblappointment] CHECK CONSTRAINT [FK_tblappointment_TBLaccount]
+GO
+ALTER TABLE [dbo].[tblappointment]  WITH CHECK ADD  CONSTRAINT [FK_tblappointment_TBLpatient] FOREIGN KEY([patientid])
+REFERENCES [dbo].[TBLpatient] ([patientid])
+GO
+ALTER TABLE [dbo].[tblappointment] CHECK CONSTRAINT [FK_tblappointment_TBLpatient]
+GO
+ALTER TABLE [dbo].[tblbed]  WITH CHECK ADD FOREIGN KEY([roomid])
+REFERENCES [dbo].[tblroom] ([roomid])
+GO
+ALTER TABLE [dbo].[tblbill]  WITH CHECK ADD  CONSTRAINT [FK_tblbill_tblpurchase] FOREIGN KEY([purchaseid])
+REFERENCES [dbo].[tblpurchase] ([purchaseid])
+GO
+ALTER TABLE [dbo].[tblbill] CHECK CONSTRAINT [FK_tblbill_tblpurchase]
+GO
+ALTER TABLE [dbo].[tblBilldetails]  WITH CHECK ADD FOREIGN KEY([billid])
+REFERENCES [dbo].[tblbill] ([billid])
+GO
+ALTER TABLE [dbo].[tblenquiry]  WITH CHECK ADD  CONSTRAINT [FK_tblenquiry_TBLaccount] FOREIGN KEY([userid])
+REFERENCES [dbo].[TBLaccount] ([loginID])
+GO
+ALTER TABLE [dbo].[tblenquiry] CHECK CONSTRAINT [FK_tblenquiry_TBLaccount]
+GO
+ALTER TABLE [dbo].[tblitem]  WITH CHECK ADD FOREIGN KEY([itemtypeid])
+REFERENCES [dbo].[tblItemtype] ([itemtypeid])
+GO
+ALTER TABLE [dbo].[TBLlogindetails]  WITH CHECK ADD  CONSTRAINT [FK_TBLlogindetails_TBLaccount] FOREIGN KEY([loginid])
+REFERENCES [dbo].[TBLaccount] ([loginID])
+GO
+ALTER TABLE [dbo].[TBLlogindetails] CHECK CONSTRAINT [FK_TBLlogindetails_TBLaccount]
+GO
+ALTER TABLE [dbo].[tblorder]  WITH CHECK ADD  CONSTRAINT [FK_tblorder_TBLaccount1] FOREIGN KEY([receiverid])
+REFERENCES [dbo].[TBLaccount] ([loginID])
+GO
+ALTER TABLE [dbo].[tblorder] CHECK CONSTRAINT [FK_tblorder_TBLaccount1]
+GO
+ALTER TABLE [dbo].[tblorder]  WITH CHECK ADD  CONSTRAINT [FK_tblorder_TBLdistributordetails] FOREIGN KEY([distributorid])
+REFERENCES [dbo].[TBLdistributordetails] ([distributorid])
+GO
+ALTER TABLE [dbo].[tblorder] CHECK CONSTRAINT [FK_tblorder_TBLdistributordetails]
+GO
+ALTER TABLE [dbo].[tblorderdetails]  WITH CHECK ADD  CONSTRAINT [FK_tblorderdetails_tblorder] FOREIGN KEY([orderid])
+REFERENCES [dbo].[tblorder] ([Orderid])
+GO
+ALTER TABLE [dbo].[tblorderdetails] CHECK CONSTRAINT [FK_tblorderdetails_tblorder]
+GO
+ALTER TABLE [dbo].[tblorderdetails]  WITH CHECK ADD  CONSTRAINT [FK_tblorderdetails_TBLtablets] FOREIGN KEY([tablet])
+REFERENCES [dbo].[TBLItems] ([itemid])
+GO
+ALTER TABLE [dbo].[tblorderdetails] CHECK CONSTRAINT [FK_tblorderdetails_TBLtablets]
+GO
+ALTER TABLE [dbo].[tblpurchase]  WITH CHECK ADD  CONSTRAINT [FK_tblpurchase_tblorder] FOREIGN KEY([purchaseid])
+REFERENCES [dbo].[tblorder] ([Orderid])
+GO
+ALTER TABLE [dbo].[tblpurchase] CHECK CONSTRAINT [FK_tblpurchase_tblorder]
+GO
+ALTER TABLE [dbo].[tblpurchasedetails]  WITH CHECK ADD  CONSTRAINT [FK_tblpurchasedetails_tblpurchase] FOREIGN KEY([purchaseid])
+REFERENCES [dbo].[tblpurchase] ([purchaseid])
+GO
+ALTER TABLE [dbo].[tblpurchasedetails] CHECK CONSTRAINT [FK_tblpurchasedetails_tblpurchase]
+GO
+ALTER TABLE [dbo].[tblroom]  WITH CHECK ADD FOREIGN KEY([roomtypeid])
+REFERENCES [dbo].[tblroomtype] ([roomtypeid])
+GO
+ALTER TABLE [dbo].[tbltheoreapylog]  WITH CHECK ADD FOREIGN KEY([entryby])
+REFERENCES [dbo].[TBLaccount] ([loginID])
+GO
+ALTER TABLE [dbo].[tbltheoreapylog]  WITH CHECK ADD FOREIGN KEY([therapydetailsid])
+REFERENCES [dbo].[tbltherapydetails] ([therapydetailsid])
+GO
+ALTER TABLE [dbo].[tbltherapydetails]  WITH CHECK ADD FOREIGN KEY([caretaker])
+REFERENCES [dbo].[TBLaccount] ([loginID])
+GO
+ALTER TABLE [dbo].[tbltherapydetails]  WITH CHECK ADD FOREIGN KEY([entryby])
+REFERENCES [dbo].[TBLaccount] ([loginID])
+GO
+ALTER TABLE [dbo].[tbltherapydetails]  WITH CHECK ADD FOREIGN KEY([supervior])
+REFERENCES [dbo].[TBLaccount] ([loginID])
+GO
+ALTER TABLE [dbo].[tbltherapydetails]  WITH CHECK ADD FOREIGN KEY([treatmenttypeid])
+REFERENCES [dbo].[tbltreatementtype] ([treatmenttypeid])
+GO
+ALTER TABLE [dbo].[tbltherapydetails]  WITH CHECK ADD  CONSTRAINT [FK_tbltherapydetails_TBLpatient] FOREIGN KEY([patientid])
+REFERENCES [dbo].[TBLpatient] ([patientid])
+GO
+ALTER TABLE [dbo].[tbltherapydetails] CHECK CONSTRAINT [FK_tbltherapydetails_TBLpatient]
+GO
+ALTER TABLE [dbo].[tbltreatment]  WITH CHECK ADD  CONSTRAINT [FK_tbltreatment_TBLpatient] FOREIGN KEY([patientid])
+REFERENCES [dbo].[TBLpatient] ([patientid])
+GO
+ALTER TABLE [dbo].[tbltreatment] CHECK CONSTRAINT [FK_tbltreatment_TBLpatient]
+GO
+ALTER TABLE [dbo].[tbltreatmentdetails]  WITH CHECK ADD  CONSTRAINT [FK_tbltreatmentdetails_TBLdisease] FOREIGN KEY([deseaseid])
+REFERENCES [dbo].[TBLdisease] ([diseaseid])
+GO
+ALTER TABLE [dbo].[tbltreatmentdetails] CHECK CONSTRAINT [FK_tbltreatmentdetails_TBLdisease]
+GO
+ALTER TABLE [dbo].[tbltreatmentdetails]  WITH CHECK ADD  CONSTRAINT [FK_tbltreatmentdetails_tbltreatment] FOREIGN KEY([treamentid])
+REFERENCES [dbo].[tbltreatment] ([treatmentid])
+GO
+ALTER TABLE [dbo].[tbltreatmentdetails] CHECK CONSTRAINT [FK_tbltreatmentdetails_tbltreatment]
+GO
+ALTER TABLE [dbo].[tbltreatmenttabletdetails]  WITH CHECK ADD  CONSTRAINT [FK_tbltreatmenttabletdetails_TBLtablets] FOREIGN KEY([tabletid])
+REFERENCES [dbo].[TBLItems] ([itemid])
+GO
+ALTER TABLE [dbo].[tbltreatmenttabletdetails] CHECK CONSTRAINT [FK_tbltreatmenttabletdetails_TBLtablets]
+GO
+ALTER TABLE [dbo].[tbltreatmenttabletdetails]  WITH CHECK ADD  CONSTRAINT [FK_tbltreatmenttabletdetails_tbltreatmentdetails] FOREIGN KEY([treatmentdetailsid])
+REFERENCES [dbo].[tbltreatmentdetails] ([treatmentdetailsid])
+GO
+ALTER TABLE [dbo].[tbltreatmenttabletdetails] CHECK CONSTRAINT [FK_tbltreatmenttabletdetails_tbltreatmentdetails]
+GO
