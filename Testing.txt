@@ -1,0 +1,13 @@
+Patient call grid
+View Details
+Enquiry -> fill Patient
+Enquiry call grid
+appointment 
+DDL select
+call grid-all forms
+View doctor cakendar**
+Appointment-->PatientName,location---Give calendar view
+created order is not displayed 
+display item name purchase
+
+
