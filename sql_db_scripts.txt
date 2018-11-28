@@ -1,3 +1,4 @@
+https://medium.com/@etiennerouzeaud/a-simple-crud-application-with-javascript-ebc82f688c59
 USE [HMDB]
 GO
 /****** Object:  Table [dbo].[TBLaccount]    Script Date: 13-11-2018 10:53:52 ******/
